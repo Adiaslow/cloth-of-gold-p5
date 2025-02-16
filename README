@@ -1,1 +1,5 @@
+# Cloth of Gold (p5)
+This is a barebones implementation of Cloth of Gold for developing the base algorithms. 
+
+Cloth of Gold is a PvP strategy game which uses a modified Conway's Game of Life. The underlying logic is as such:
 
