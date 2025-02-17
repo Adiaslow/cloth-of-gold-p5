@@ -45,8 +45,7 @@ Let the world be denoted $\mathbf{W}$ such that $\mathbf{W} \in \mathbb{S}^{m \t
 Let $\mathbf{W}(t)$ represent the world at time $t$ and $w_{i,j}(t)$ represent the value of the cell at position $(i,j)$ at time $t$ in the world such that $w_{i,j}(t) \in \mathbb{S}$.
 Define the neighbor counting functions:
 
-$$
-\begin{align}
+$$\begin{align}
 N_A[w_{i,j}(t)] & = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = a] : (k,l) \ne (i,j) \tag{sum of A neighbors} \\
 N_B[w_{i,j}(t)] & = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = b] : (k,l) \ne (i,j) \tag{sum of B neighbors} \\
 N_C[w_{i,j}(t)] & = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = c] : (k,l) \ne (i,j) \tag{sum of C neighbors} \\
@@ -56,8 +55,7 @@ $$
 
 The value of each cell is updated at each time step $t$ according to the following rules:
 
-$$
-\begin{align}
+$$\begin{align}
 w_{i,j}(t+1) & = 0 :
 w_{i,j}(t) \in \mathbb{S} \
 \land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3)
@@ -86,9 +84,7 @@ w_{i,j}(t+1) & = d :
 w_{i,j}(t) \in \{a, b\} \
 \land \ 2 \le N[w_{i,j}(t)] \le 3 \
 \land \ N_A[w_{i,j}(t)] \ne N_B[w_{i,j}(t)]
-\\
-\end{align}
-$$
+\end{align}$$
 
 The outcomes of a cell are as follows:
 
