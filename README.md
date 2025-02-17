@@ -35,7 +35,7 @@ Each player will take turns placing units in the world.
 ## Game Logic
 
 Let there be generic player populations $A$ and $B$ and let there be a neutral non-player population $C$.
-Let the world be denoted $\mathbf{W}$ such that $\mathbf{W} \in \mathbb{S}^{m \times n}$ where $\mathbb{S} = \{0, a, b, c, d\}$ such that:
+Let the world be denoted $\mathbf{W}$ such that $\mathbf{W} \in U^{m \times n}$ where $U = \{0, a, b, c, d\}$ such that:
 
 - 0 represents an empty cell
 - $a$ represents a cell belonging to A
@@ -43,7 +43,7 @@ Let the world be denoted $\mathbf{W}$ such that $\mathbf{W} \in \mathbb{S}^{m \t
 - $c$ represents a cell belonging to C
 - $d$ represents a cell that has been killed
 
-Let $\mathbf{W}(t)$ represent the world at time $t$ and $w_{i,j}(t)$ represent the value of the cell at position $(i,j)$ at time $t$ in the world such that $w_{i,j}(t) \in \mathbb{S}$.
+Let $\mathbf{W}(t)$ represent the world at time $t$ and $w_{i,j}(t)$ represent the value of the cell at position $(i,j)$ at time $t$ in the world such that $w_{i,j}(t) \in U$.
 Define the neighbor counting functions:
 
 $$
@@ -65,7 +65,7 @@ $$
 The value of each cell is updated at each time step $t$ according to the following rules:
 
 $$
-w_{i,j}(t+1) = 0 : w_{i,j}(t) \in \mathbb{S} \\ \land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3) \land \\ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
+w_{i,j}(t+1) = 0 : w_{i,j}(t) \in U \\ \land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3) \\ \land \\ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
 $$
 
 $$
@@ -105,34 +105,34 @@ $$
 B(t) = \sum_{i=1}^{m} \sum_{j=1}^{n} [w_{i,j}(t) = b]
 $$
 
-Let $S_A(t)$ represent the score of A at time $t$ such that:
+Let $\mathcal{S}_A(t)$ represent the score of A at time $t$ such that:
 
 $$
-S_A(t) = A(t) - B(t)
+\mathcal{S}_A(t) = A(t) - B(t)
 $$
 
-Let $S_B(t)$ represent the score of B at time $t$ such that:
+Let $\mathcal{S}_B(t)$ represent the score of B at time $t$ such that:
 
 $$
-S_B(t) = B(t) - A(t)
+\mathcal{S}_B(t) = B(t) - A(t)
 $$
 
 Let the win condition of player $A$ be defined as:
 
 $$
-S_B(t) \le S_B(t+1) \le 0
+\mathcal{S}_B(t) \le \mathcal{S}_B(t+1) \le 0
 $$
 
 Let the win condition of player $B$ be defined as:
 
 $$
-S_A(t) \le S_A(t+1) \le 0
+\mathcal{S}_A(t) \le \mathcal{S}_A(t+1) \le 0
 $$
 
 Let the mutual loss condition be defined as:
 
 $$
-S_A(t) \le 0 \ \land \ S_B(t) \le 0
+\mathcal{S}_A(t) \le 0 \ \land \ \mathcal{S}_B(t) \le 0
 $$
 
 ## Scoring
