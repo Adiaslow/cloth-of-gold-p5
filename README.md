@@ -5,12 +5,12 @@ Cloth of Gold is a PvP strategy game which uses a modified Conway's Game of Life
 
 ## Gameplay
 
-The game begins with each player placing their initial population (10 units) into the world.
+The game begins with each player taking turns placing their initial population (up to 10 units) into the world.
 Each round consists of three phases:
 
-1. The world is updated based on the rules described above for 168 generations (7 24-hour days).
-2. The scores of each player are updated based on the number of units each player has in the world.
-3. The players take turns placing units in the world.
+1. Players take turns placing units in the world (up to 10 units each)
+2. The world is updated based on the rules described below for 168 generations (7 24-hour days)
+3. The scores of each player are updated based on both unit count and territory control
 
 The game ends when the win condition of one of the players is met or when the mutual loss condition is met.
 
@@ -18,13 +18,19 @@ The game ends when the win condition of one of the players is met or when the mu
 
 Each player will take turns placing units in the world.
 
-- Players may place units anywhere in the world except for the following restrictions:
-  - Players may not place a unit within a 10-cell radius of another player's unit.
-  - Players may not place a unit on top of another unit.
-  - Players may not place a unit on top of a dead unit.
-  - Players may not place a unit on top of a unit that has already been placed in the same generation.
-  - Players may not place a unit outside of the world.
-- Players may delete units from the world only if they have been placed during the same placement phase.
+- Players may place up to 10 units per turn
+- Players must place at least 1 unit per turn
+- Players may place units with the following restrictions:
+  - Players may not place a unit within a 1-cell radius of another player's unit
+  - Players may not place a unit on top of another unit
+  - Players may not place a unit on top of a dead unit
+  - Players may not place units outside their territory (except for their first unit)
+  - Players may not place units in overlapping territory zones
+- Players may delete units from the world only if they have been placed during their current turn
+- Territory is determined by metaball fields around existing units:
+  - Each player's units create a field of influence
+  - Areas where field strength > 1.0 are considered that player's territory
+  - Areas where both players' fields are > 1.0 are considered contested territory
 
 ## Game Logic
 
@@ -136,6 +142,14 @@ $$
 S_A(t) \le 0 \
 \land \ S_B(t) \le 0
 $$
+
+## Scoring
+
+The game tracks several metrics for each player:
+
+- Unit Count: The total number of living units on the board
+- Territory Size: The number of cells within a player's territory
+- Score: Calculated as (player's units - opponent's units)
 
 ## Future Directions
 
