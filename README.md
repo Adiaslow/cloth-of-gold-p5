@@ -65,7 +65,7 @@ $$
 The value of each cell is updated at each time step $t$ according to the following rules:
 
 $$
-w_{i,j}(t+1) = 0 : w_{i,j}(t) \in U \\ \land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3) \\ \land \\ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
+w_{i,j}(t+1) = 0 : w_{i,j}(t) \in U \\ \land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3) \\ \land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
 $$
 
 $$
@@ -152,10 +152,6 @@ The game tracks several metrics for each player:
 - Dynamical systems to model terrain and weather
   - Terrain type modulates effect of still life pattern perks
   - Weather affects terrain change, fire spread, etc.
-- Boarder drawing around player unit clusters
-  - Player unit clusters are defined by the convex hull of the player's units plus a buffer zone
-  - Placement of units inside the buffer zone is allowed by the player
-  - Placement of units outside of the buffer zone is forbidden by the player
 - More complex unit types
   - Aggressive non-player units
   - Defensive non-player units
