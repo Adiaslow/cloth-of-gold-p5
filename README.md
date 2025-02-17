@@ -65,23 +65,23 @@ $$
 The value of each cell is updated at each time step $t$ according to the following rules:
 
 $$
-w_{i,j}(t+1) = 0 : w_{i,j}(t) \in \mathbb{S} \ \land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3) \land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
+w_{i,j}(t+1) = 0 : w_{i,j}(t) \in \mathbb{S} \\ \land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3) \land \\ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
 $$
 
 $$
-w_{i,j}(t+1) = a : w_{i,j}(t) \in \{0, a, c\} \ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \ \land \ N_A[w_{i,j}(t)] > N_B[w_{i,j}(t)]
+w_{i,j}(t+1) = a : w_{i,j}(t) \in \{0, a, c\} \\ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \\ \lor \ (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \\ \land \ N_A[w_{i,j}(t)] > N_B[w_{i,j}(t)]
 $$
 
 $$
-w_{i,j}(t+1) = b : w_{i,j}(t) \in \{0, b, c\} \ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \ \land \ N_A[w_{i,j}(t)] < N_B[w_{i,j}(t)]
+w_{i,j}(t+1) = b : w_{i,j}(t) \in \{0, b, c\} \\ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \\ \lor \ (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \\ \land \ N_A[w_{i,j}(t)] < N_B[w_{i,j}(t)]
 $$
 
 $$
-w_{i,j}(t+1) = w_{i,j}(t) : w_{i,j}(t) \in \{0, a, b, c\} \ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \ \land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
+w_{i,j}(t+1) = w_{i,j}(t) : w_{i,j}(t) \in \{0, a, b, c\} \\ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \\ \lor \ (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \\ \land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
 $$
 
 $$
-w_{i,j}(t+1) = d : w_{i,j}(t) \in \{a, b\} \ \land \ 2 \le N[w_{i,j}(t)] \le 3 \ \land \ N_A[w_{i,j}(t)] \ne N_B[w_{i,j}(t)]
+w_{i,j}(t+1) = d : w_{i,j}(t) \in \{a, b\} \\ \land \ 2 \le N[w_{i,j}(t)] \le 3 \\ \land \ N_A[w_{i,j}(t)] \ne N_B[w_{i,j}(t)]
 $$
 
 The outcomes of a cell are as follows:
