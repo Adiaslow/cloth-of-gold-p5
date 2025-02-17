@@ -19,7 +19,6 @@ The game ends when the win condition of one of the players is met or when the mu
 Each player will take turns placing units in the world.
 
 - Players may place up to 10 units per turn
-- Players must place at least 1 unit per turn
 - Players may place units with the following restrictions:
   - Players may not place a unit within a 1-cell radius of another player's unit
   - Players may not place a unit on top of another unit
