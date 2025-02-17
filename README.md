@@ -47,48 +47,41 @@ Let $\mathbf{W}(t)$ represent the world at time $t$ and $w_{i,j}(t)$ represent t
 Define the neighbor counting functions:
 
 $$
-\begin{align}
-N_A[w_{i,j}(t)] & = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = a] : (k,l) \ne (i,j) \tag{sum of A neighbors} \\
-N_B[w_{i,j}(t)] & = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = b] : (k,l) \ne (i,j) \tag{sum of B neighbors} \\
-N_C[w_{i,j}(t)] & = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = c] : (k,l) \ne (i,j) \tag{sum of C neighbors} \\
-N[w_{i,j}(t)] & = N_A[w_{i,j}(t)] + N_B[w_{i,j}(t)] + N_C[w_{i,j}(t)] \tag{sum of all neighbors}
-\end{align}
+N_A[w_{i,j}(t)] = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = a] : (k,l) \ne (i,j)
+$$
+
+$$
+N_B[w_{i,j}(t)] = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = b] : (k,l) \ne (i,j)
+$$
+
+$$
+N_C[w_{i,j}(t)] = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = c] : (k,l) \ne (i,j)
+$$
+
+$$
+N[w_{i,j}(t)] = N_A[w_{i,j}(t)] + N_B[w_{i,j}(t)] + N_C[w_{i,j}(t)]
 $$
 
 The value of each cell is updated at each time step $t$ according to the following rules:
 
 $$
-\begin{align}
-w_{i,j}(t+1) & = 0 :
-w_{i,j}(t) \in \mathbb{S} \
-\land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3)
-\land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
-\\
+w_{i,j}(t+1) = 0 : w_{i,j}(t) \in \mathbb{S} \ \land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3) \land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
+$$
 
-w_{i,j}(t+1) & = a :
-w_{i,j}(t) \in \{0, a, c\} \
-\land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \
-\land \ N_A[w_{i,j}(t)] > N_B[w_{i,j}(t)]
-\\
+$$
+w_{i,j}(t+1) = a : w_{i,j}(t) \in \{0, a, c\} \ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \ \land \ N_A[w_{i,j}(t)] > N_B[w_{i,j}(t)]
+$$
 
-w_{i,j}(t+1) & = b :
-w_{i,j}(t) \in \{0, b, c\} \
-\land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \
-\land \ N_A[w_{i,j}(t)] < N_B[w_{i,j}(t)]
-\\
+$$
+w_{i,j}(t+1) = b : w_{i,j}(t) \in \{0, b, c\} \ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \ \land \ N_A[w_{i,j}(t)] < N_B[w_{i,j}(t)]
+$$
 
-w_{i,j}(t+1) & = w_{i,j}(t) :
-w_{i,j}(t) \in \{0, a, b, c\} \
-\land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \
-\land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
-\\
+$$
+w_{i,j}(t+1) = w_{i,j}(t) : w_{i,j}(t) \in \{0, a, b, c\} \ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \ \land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
+$$
 
-w_{i,j}(t+1) & = d :
-w_{i,j}(t) \in \{a, b\} \
-\land \ 2 \le N[w_{i,j}(t)] \le 3 \
-\land \ N_A[w_{i,j}(t)] \ne N_B[w_{i,j}(t)]
-\\
-\end{align}
+$$
+w_{i,j}(t+1) = d : w_{i,j}(t) \in \{a, b\} \ \land \ 2 \le N[w_{i,j}(t)] \le 3 \ \land \ N_A[w_{i,j}(t)] \ne N_B[w_{i,j}(t)]
 $$
 
 The outcomes of a cell are as follows:
@@ -139,8 +132,7 @@ $$
 Let the mutual loss condition be defined as:
 
 $$
-S_A(t) \le 0 \
-\land \ S_B(t) \le 0
+S_A(t) \le 0 \ \land \ S_B(t) \le 0
 $$
 
 ## Scoring
