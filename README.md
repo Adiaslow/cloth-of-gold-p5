@@ -19,6 +19,7 @@ The game ends when the win condition of one of the players is met or when the mu
 Each player will take turns placing units in the world.
 
 - Players may place up to 10 units per turn
+- Players must place at least 1 unit per turn
 - Players may place units with the following restrictions:
   - Players may not place a unit within a 1-cell radius of another player's unit
   - Players may not place a unit on top of another unit
@@ -45,8 +46,6 @@ Let the world be denoted $\mathbf{W}$ such that $\mathbf{W} \in \mathbb{S}^{m \t
 Let $\mathbf{W}(t)$ represent the world at time $t$ and $w_{i,j}(t)$ represent the value of the cell at position $(i,j)$ at time $t$ in the world such that $w_{i,j}(t) \in \mathbb{S}$.
 Define the neighbor counting functions:
 
-<<<<<<< HEAD
-
 $$
 N_A[w_{i,j}(t)] = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = a] : (k,l) \ne (i,j)
 $$
@@ -61,71 +60,29 @@ $$
 
 $$
 N[w_{i,j}(t)] = N_A[w_{i,j}(t)] + N_B[w_{i,j}(t)] + N_C[w_{i,j}(t)]
-=======
-$$\begin{align}
-N_A[w_{i,j}(t)] & = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = a] : (k,l) \ne (i,j) \tag{sum of A neighbors} \\
-N_B[w_{i,j}(t)] & = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = b] : (k,l) \ne (i,j) \tag{sum of B neighbors} \\
-N_C[w_{i,j}(t)] & = \sum_{k=i-1}^{i+1} \sum_{l=j-1}^{j+1} [w_{k,l}(t) = c] : (k,l) \ne (i,j) \tag{sum of C neighbors} \\
-N[w_{i,j}(t)] & = N_A[w_{i,j}(t)] + N_B[w_{i,j}(t)] + N_C[w_{i,j}(t)] \tag{sum of all neighbors}
-\end{align}
->>>>>>> 9f5cb740f2df43db68e1b2c54fd124bf99c23921
 $$
 
 The value of each cell is updated at each time step $t$ according to the following rules:
-
-<<<<<<< HEAD
 
 $$
 w_{i,j}(t+1) = 0 : w_{i,j}(t) \in \mathbb{S} \ \land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3) \land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
 $$
 
-=======
-
 $$
-\begin{align}
-w_{i,j}(t+1) & = 0 :
-w_{i,j}(t) \in \mathbb{S} \
-\land \ (N[w_{i,j}(t)] < 2 \lor N[w_{i,j}(t)] > 3)
-\land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
-\\
->>>>>>> 9f5cb740f2df43db68e1b2c54fd124bf99c23921
-
-
+w_{i,j}(t+1) = a : w_{i,j}(t) \in \{0, a, c\} \ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \ \land \ N_A[w_{i,j}(t)] > N_B[w_{i,j}(t)]
 $$
 
-w*{i,j}(t+1) = a : w*{i,j}(t) \in \{0, a, c\} \ \land \ ((w*{i,j}(t) \ne 0 \land 2 \le N[w*{i,j}(t)] \le 3) \lor (w*{i,j}(t) = 0 \land N[w*{i,j}(t)] = 3)) \ \land \ N*A[w*{i,j}(t)] > N*B[w*{i,j}(t)]
-
+$$
+w_{i,j}(t+1) = b : w_{i,j}(t) \in \{0, b, c\} \ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \ \land \ N_A[w_{i,j}(t)] < N_B[w_{i,j}(t)]
 $$
 
-
+$$
+w_{i,j}(t+1) = w_{i,j}(t) : w_{i,j}(t) \in \{0, a, b, c\} \ \land \ ((w_{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w_{i,j}(t) = 0 \land N[w_{i,j}(t)] = 3)) \ \land \ N_A[w_{i,j}(t)] = N_B[w_{i,j}(t)]
 $$
 
-w*{i,j}(t+1) = b : w*{i,j}(t) \in \{0, b, c\} \ \land \ ((w*{i,j}(t) \ne 0 \land 2 \le N[w*{i,j}(t)] \le 3) \lor (w*{i,j}(t) = 0 \land N[w*{i,j}(t)] = 3)) \ \land \ N*A[w*{i,j}(t)] < N*B[w*{i,j}(t)]
-
 $$
-
-
+w_{i,j}(t+1) = d : w_{i,j}(t) \in \{a, b\} \ \land \ 2 \le N[w_{i,j}(t)] \le 3 \ \land \ N_A[w_{i,j}(t)] \ne N_B[w_{i,j}(t)]
 $$
-
-w*{i,j}(t+1) = w*{i,j}(t) : w*{i,j}(t) \in \{0, a, b, c\} \ \land \ ((w*{i,j}(t) \ne 0 \land 2 \le N[w_{i,j}(t)] \le 3) \lor (w*{i,j}(t) = 0 \land N[w*{i,j}(t)] = 3)) \ \land \ N*A[w*{i,j}(t)] = N*B[w*{i,j}(t)]
-
-$$
-
-<<<<<<< HEAD
-$$
-
-w*{i,j}(t+1) = d : w*{i,j}(t) \in \{a, b\} \ \land \ 2 \le N[w_{i,j}(t)] \le 3 \ \land \ N*A[w*{i,j}(t)] \ne N*B[w*{i,j}(t)]
-
-$$
-=======
-w_{i,j}(t+1) & = d :
-w_{i,j}(t) \in \{a, b\} \
-\land \ 2 \le N[w_{i,j}(t)] \le 3 \
-\land \ N_A[w_{i,j}(t)] \ne N_B[w_{i,j}(t)]
-\end{align}
-$$
-
-> > > > > > > 9f5cb740f2df43db68e1b2c54fd124bf99c23921
 
 The outcomes of a cell are as follows:
 
